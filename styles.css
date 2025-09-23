@@ -1,0 +1,52 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.title-header,
+.calc-container {
+    width: 80%;
+}
+
+.display {
+    margin-bottom: 1.5em;
+}
+
+.display input {
+    width: 22em;
+    height: 2em;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    flex:0
+}
+
+.btn-group button {
+    box-sizing: border-box;
+    width: 5em;
+    height: 5em;
+}
+
+.btn-group .digits-btn {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.btn-group .operator-btn {
+    display: flex;
+    flex-direction: column;
+}
