@@ -37,6 +37,7 @@ body {
     box-sizing: border-box;
     width: 5em;
     height: 5em;
+    background-color: yellowgreen;
 }
 
 .btn-group .digits-btn {
