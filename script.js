@@ -19,7 +19,7 @@ let isOnDigit = false;
 function operate(operatorProp, num1, num2) {
     if (num2 === 0 && operatorProp === '/') {
         alert('Oh no.. no.no. division by 0 is bad..');
-        return;
+        return "why";
     } else if (!operatorProp) {
         alert('Input a number to continue');
         return;

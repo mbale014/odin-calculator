@@ -1,38 +1,52 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #FEF3E2;
+    height: 100%;
+    margin: 0;
+    padding:0;
+}
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.container {
     text-align: center;
     box-sizing: border-box;
-    flex-shrink:1;
+    min-height: 100vh;
 }
 
-.title-header,
+.header {
+    padding: 20px;
+    margin-bottom: 12.5em;
+}
+
 .calc-container {
     max-width: 440px;
-    border: 2px solid red;
+}
+
+.calc-container {
+    border-radius: 15px;
+    background-color: #FAB12F;
+    padding:18px 10px;
+    flex-grow:1;
 }
 
 
 .display input {
-    color: white;
-    background-color: palevioletred;
+    color: #FEF3E2;
+    background-color: #FA812F;
     font-weight: 400;
     font-size: 35px;
     max-width: 9.3em;
+    height: 2.3em;
     flex: 1 2;
     text-align: end;
     border: none;
     border-radius: 10px;
-    margin:12px
+    margin:12px;
+    padding-right:17px;
+    box-sizing: border-box;
 }
 
 .btn-group {
@@ -43,14 +57,15 @@ body {
 }
 
 .btn-group button {
-    color: white;
+    color: #FEF3E2;
     box-sizing: border-box;
     border-radius: 15px;
-    background-color: yellowgreen;
+    background-color: #FA812F;
     margin:5px;
     padding: 10px 20px;
     font-size: 18px;
     flex-shrink: 5;
+    font-weight: 500;
 
 }
 
@@ -71,9 +86,15 @@ body {
 }
 
 .btn-group .clear-btn-group button {
-    background-color: maroon;
+    background-color: #FA812F;
     max-width: 90%;
     padding: 10px 15px;
+}
+
+.footer {
+    color: #FA812F;
+    margin-top: 11em;
+    padding:18px;
 }
 
 
