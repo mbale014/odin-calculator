@@ -17,21 +17,25 @@ let isOnDigit = false;
 
 // execute operator function
 function operate(operatorProp, num1, num2) {
-    if (num2 === '0' && operatorProp === '/') {
+    if (num2 === 0 && operatorProp === '/') {
         alert('Oh no.. no.no. division by 0 is bad..');
+        return;
+    } else if (!operatorProp) {
+        alert('Input a number to continue');
+        return;
     } else {
-        return operators[operatorProp](num1, num2);
+        return operators[operatorProp](num1, num2).toFixed(2);
     }
-    
 };
 
 // Click to populate the display function
 function populateDisplay() {
     const display = document.querySelector('.display input');
     const btnDigit = document.querySelectorAll('.digits-btn button');
-    const btnClear = document.querySelector('.clear-btn button');
+    const btnClear = document.querySelector('.clear-btn');
     const btnOperator = document.querySelectorAll('.operator-btn button');
     const btnEqual = document.querySelector('.equal-sign-operator');
+    const btnDel = document.querySelector('.backspace-btn');
 
     // Add digit on every digits button click to show it on display
     btnDigit.forEach(item => {
@@ -40,10 +44,15 @@ function populateDisplay() {
             if (valueTemp !== '') {
                 valueTemp = '';
                 display.value = '';
+            };
+            // Prevent user from entering decimal (.) twice
+            if (display.value.includes('.') && e.target.textContent === '.') {
+                return;
+            } else {
+                const digitValue = e.target.textContent;
+                display.value += digitValue;
+                console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
             }
-            const digitValue = e.target.textContent;
-            display.value += digitValue;
-            console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
         })
     });
 
@@ -53,20 +62,24 @@ function populateDisplay() {
         console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
     });
 
+    // backspace button as delete function on display
+    btnDel.addEventListener('click', () => {
+        display.value = display.value.slice(0, -1);
+    });
+
     // Make the operator button works on click
     btnOperator.forEach(item => {
         item.addEventListener('click', (e) => {
             if (e.target.className !== 'equal-sign-operator') {
                 valueTemp = display.value;
-                operatorFunc = '';
                 if (!isOnDigit) {
                     return;
                 }else if (beforeNumber !== '') {
                     afterNumber = valueTemp;
-                    operatorFunc = e.target.textContent; // store the operator for next operation
                     const result = operate(operatorFunc, +beforeNumber, +afterNumber); // save the operate between number and save to result var
                     display.value = result; // show the result on display
                     beforeNumber = result;
+                    operatorFunc = e.target.textContent; // store the operator for next operation
                     isOnDigit = false;
                 } else if (beforeNumber === '') {
                     // second condition when user resets or first time using operator
@@ -87,11 +100,12 @@ function populateDisplay() {
         afterNumber = display.value;
         const resultEqual = operate(operatorFunc, +beforeNumber, +afterNumber); // save the operate between number and save to result var
         display.value = resultEqual; // show the result on display
-        beforeNumber = afterNumber = operatorFunc = valueTemp = '';
-        isOnDigit = false;
+        beforeNumber = operatorFunc = valueTemp = '';
         console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
-    })
+    });
 };
 
+// run the function
 populateDisplay();
+
 

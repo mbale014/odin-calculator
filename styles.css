@@ -11,43 +11,70 @@ body {
 
 .container {
     text-align: center;
+    box-sizing: border-box;
+    flex-shrink:1;
 }
 
 .title-header,
 .calc-container {
-    width: 80%;
+    max-width: 440px;
+    border: 2px solid red;
 }
 
-.display {
-    margin-bottom: 1.5em;
-}
 
 .display input {
-    width: 22em;
-    height: 2em;
+    color: white;
+    background-color: palevioletred;
+    font-weight: 400;
+    font-size: 35px;
+    max-width: 9.3em;
+    flex: 1 2;
+    text-align: end;
+    border: none;
+    border-radius: 10px;
+    margin:12px
 }
 
 .btn-group {
     display: flex;
     justify-content: center;
-    flex:0
+    flex:1 auto;
+    padding: 1em;
 }
 
 .btn-group button {
+    color: white;
     box-sizing: border-box;
-    width: 5em;
-    height: 5em;
+    border-radius: 15px;
     background-color: yellowgreen;
+    margin:5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    flex-shrink: 5;
+
 }
 
 .btn-group .digits-btn {
-    width: 40%;
+    max-width: 200px;
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .btn-group .operator-btn {
     display: flex;
     flex-direction: column;
 }
+
+.btn-group .clear-btn-group {
+    align-self: flex-start;
+    max-width: 80px;
+}
+
+.btn-group .clear-btn-group button {
+    background-color: maroon;
+    max-width: 90%;
+    padding: 10px 15px;
+}
+
+
+
