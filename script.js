@@ -80,6 +80,7 @@ function populateDisplay() {
             if (e.target.className !== 'equal-sign-operator') {
                 valueTemp = display.value;
                 if (!isOnDigit) {
+                    operatorFunc = e.target.textContent;
                     return;
                 }else if (beforeNumber !== '') {
                     afterNumber = valueTemp;
