@@ -17,14 +17,16 @@ let isOnDigit = false;
 
 // execute operator function
 function operate(operatorProp, num1, num2) {
+    const display = document.querySelector('.display input')
     if (num2 === 0 && operatorProp === '/') {
         alert('Oh no.. no.no. division by 0 is bad..');
-        return "why";
+        return display.value;
     } else if (!operatorProp) {
-        alert('Input a number to continue');
-        return;
+        alert('Chose an operator or do new calculation by input numbers');
+        return display.value;
     } else {
-        return operators[operatorProp](num1, num2).toFixed(2);
+        let output = operators[operatorProp](num1, num2);
+        return Math.round(output * 100)/100;
     }
 };
 
@@ -49,6 +51,11 @@ function populateDisplay() {
             if (display.value.includes('.') && e.target.textContent === '.') {
                 return;
             } else {
+                if (display.value[0] === '0' && !display.value.includes('.') && e.target.textContent !== '.' ) {
+                    // initial zero handling. 
+                    // this will check a zero in first index and replace with input unless user go with decimal
+                    display.value = display.value.replace('0','');
+                }
                 const digitValue = e.target.textContent;
                 display.value += digitValue;
                 console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
@@ -96,12 +103,17 @@ function populateDisplay() {
     btnEqual.addEventListener('click', () => {
         if (!isOnDigit) {
             return;
-        };
-        afterNumber = display.value;
-        const resultEqual = operate(operatorFunc, +beforeNumber, +afterNumber); // save the operate between number and save to result var
-        display.value = resultEqual; // show the result on display
-        beforeNumber = operatorFunc = valueTemp = '';
-        console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
+        } else {
+            afterNumber = display.value;
+            const resultEqual = operate(operatorFunc, +beforeNumber, +afterNumber); // save the operate between number and save to result var
+            display.value = resultEqual; // show the result on display
+            afterNumber = resultEqual;
+            valueTemp = resultEqual;
+            beforeNumber = operatorFunc = '';
+            console.log(valueTemp, beforeNumber, afterNumber, operatorFunc);
+
+        }
+        
     });
 };
 
